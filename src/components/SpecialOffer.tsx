@@ -1,21 +1,17 @@
 import React from "react";
 import {Pizza} from "../types";
-import {withAddToCart, AddToCartProps} from "./AddToCart";
+import {WithAddToCartProps} from "./AddToCart";
 import SpecialOfferCSS from "./SpecialOffer.module.css";
 
-interface Props extends AddToCartProps {
+interface Props {
   pizza: Pizza;
 }
 
-const SpecialOffer: React.FC<Props> = ({pizza, addToCart}) => {
-  const handleAddToCartClick = () => {
-    addToCart({
-      id: pizza.id,
-      name: pizza.name,
-      price: pizza.price
-    });
-  }
+// SpecialOffer uses the Render Props pattern by wrapping the button
+// in WithAddToCartProps, which passes addToCart method as a prop to button
+// and renders this wrapped button using a function
 
+const SpecialOffer: React.FC<Props> = ({pizza}) => {
   return (
     <div className={SpecialOfferCSS.container}>
       <div>
@@ -24,15 +20,25 @@ const SpecialOffer: React.FC<Props> = ({pizza, addToCart}) => {
         <p>{pizza.price}</p>
       </div>
       <div>
-      <button
-        type="button"
-        onClick={handleAddToCartClick}  
-      >
-        Add to Cart
-      </button>
+        <WithAddToCartProps>
+          {({addToCart}) => {
+            return (
+              <button
+                type="button"
+                onClick={() => addToCart({
+                  id: pizza.id,
+                  name: pizza.name,
+                  price: pizza.price
+                })}
+              >
+                Add to Cart
+              </button>
+            );
+          }}
+        </WithAddToCartProps>
       </div>
     </div>
   )
 }
 
-export default withAddToCart(SpecialOffer);
+export default SpecialOffer;

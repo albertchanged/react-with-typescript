@@ -7,6 +7,10 @@ interface Props extends AddToCartProps {
   pizza: Pizza;
 }
 
+// PizzaItem uses the Higher Order Component pattern by wrapping itself in
+// withAddToCart, which accepts a Child Component (PizzaItem) and adds
+// the addToCart method to its original props
+
 const PizzaItem: React.FC<Props> = ({pizza, addToCart}) => {
   const handleAddToCartClick = () => {
     addToCart({
