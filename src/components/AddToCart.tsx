@@ -60,3 +60,24 @@ export const WithAddToCartProps: React.FC<{
 
   return children({addToCart})
 }
+
+// Use a custom hook to share addToCart functionality
+
+export const useAddToCart = () => {
+  const dispatch = useStateDispatch();
+
+  const addToCart: AddToCartProps["addToCart"] = (item) => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: {
+        item: {
+          id: item.id,
+          name: item.name,
+          price: item.price
+        }
+      }
+    });
+  }
+
+  return addToCart;
+}

@@ -1,9 +1,10 @@
 import React from "react";
 import PizzaCSS from "./Pizza.module.css";
 import {Pizza} from "../types";
-import {withAddToCart, AddToCartProps} from "./AddToCart";
+import {withAddToCart, AddToCartProps, useAddToCart} from "./AddToCart";
 
-interface Props extends AddToCartProps {
+// Note: To use Higher Order Component, ensure Props has AddToCartProps properties
+interface Props /* extends AddToCartProps */ {
   pizza: Pizza;
 }
 
@@ -11,7 +12,11 @@ interface Props extends AddToCartProps {
 // withAddToCart, which accepts a Child Component (PizzaItem) and adds
 // the addToCart method to its original props
 
-const PizzaItem: React.FC<Props> = ({pizza, addToCart}) => {
+// Note: To use Higher Order Component, receive addToCart as a prop
+const PizzaItem: React.FC<Props> = ({pizza, /*addToCart*/}) => {
+  // Using custom hook for addToCart functionality instead
+  const addToCart = useAddToCart();
+
   const handleAddToCartClick = () => {
     addToCart({
       id: pizza.id,
@@ -39,4 +44,5 @@ const PizzaItem: React.FC<Props> = ({pizza, addToCart}) => {
   )
 }
 
-export default withAddToCart(PizzaItem);
+// Note: To use Higher Order Component, wrap below in withAddToCart
+export default PizzaItem;
