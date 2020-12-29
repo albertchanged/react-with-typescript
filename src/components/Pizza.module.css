@@ -1,0 +1,16 @@
+.container {
+  border: 1px solid burlywood;
+  margin: 0 0 10px;
+  padding: 10px;
+  list-style: none;
+  font-size: 1em;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.container h2 {
+  margin: 0 0 10px;
+}
+
+.container p {
+  margin-bottom: 0;
+}
