@@ -1,6 +1,7 @@
 import React from "react";
 import CartCSS from "./Cart.module.css";
 import {FiShoppingCart} from "react-icons/fi";
+import {AppStateContext} from "./AppState";
 
 interface Props {
 
@@ -28,27 +29,38 @@ class Cart extends React.Component<Props, State> {
   
   render() {
     return (
-      <div className={CartCSS.cartContainer}>
-        <button
-          className={CartCSS.button}
-          type="button"
-          onClick={this.handleClick}
-        >
-          <FiShoppingCart />
-          <span>2 Pizza(s)</span>
-        </button>
-        <div
-          className={CartCSS.cartDropDown}
-          style={{
-            display: this.state.isOpen ? "block" : "none"
-          }}
-        >
-          <ul>
-            <li>Napoletana</li>
-            <li>Marinara</li>
-          </ul>
-        </div>
-      </div>
+      <AppStateContext.Consumer>
+        {(state) => {
+          const numPizzasInCart = state.cart.items.length;
+
+          return (
+            <div className={CartCSS.cartContainer}>
+              <button
+                className={CartCSS.button}
+                type="button"
+                onClick={this.handleClick}
+              >
+                <FiShoppingCart />
+                <span>{numPizzasInCart} Pizza{numPizzasInCart !== 1 ? "s" : ""}</span>
+              </button>
+              <div
+                className={CartCSS.cartDropDown}
+                style={{
+                  display: this.state.isOpen ? "block" : "none"
+                }}
+              >
+                <ul>
+                  {state.cart.items.map((item) => {
+                    return (
+                      <li key={item.id}>{item.name} &times; {item.quantity}</li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
+          );
+        }}
+      </AppStateContext.Consumer>
     )
   }
 }
