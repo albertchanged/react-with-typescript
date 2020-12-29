@@ -18,7 +18,9 @@ const App = () => {
           <div className={AppCSS.siteTitle}>Delicious Pizza</div>
           <Cart />
         </div>
+
         {specialOfferPizza && <SpecialOffer pizza={specialOfferPizza} />}
+
         <ul className={AppCSS.pizzaList}>
           {pizzas.map((pizza) => {
             return <Pizza key={pizza.id} pizza={pizza} />;

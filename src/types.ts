@@ -4,7 +4,3 @@ export interface Pizza {
   description: string,
   price: number
 }
-
-export interface PizzaProps {
-  pizza: Pizza;
-}
