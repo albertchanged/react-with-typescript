@@ -1,0 +1,22 @@
+.container {
+  border: 1px solid red;
+  margin: 0 0 30px;
+  padding: 10px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1em;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.container button {
+  margin-top: 5px;
+  width: 100px;
+  height: 30px;
+  background-color: forestgreen;
+  color: white;
+}
+
+.container h2 {
+  margin: 0 0 10px;
+}

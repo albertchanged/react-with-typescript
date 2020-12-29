@@ -1,11 +1,11 @@
 import React from "react";
-import PizzaCSS from "./Pizza.module.css";
-import {useStateDispatch} from "./AppState";
 import {PizzaProps} from "../types";
+import { useStateDispatch } from "./AppState";
+import SpecialOfferCSS from "./SpecialOffer.module.css";
 
-const PizzaItem: React.FC<PizzaProps> = ({pizza}) => {
+const SpecialOffer: React.FC<PizzaProps> = ({pizza}) => {
   const dispatch = useStateDispatch();
-
+  
   const handleAddToCartClick = () => {
     dispatch({
       type: "ADD_TO_CART",
@@ -20,7 +20,7 @@ const PizzaItem: React.FC<PizzaProps> = ({pizza}) => {
   }
 
   return (
-    <li className={PizzaCSS.container}>
+    <div className={SpecialOfferCSS.container}>
       <div>
         <h2>{pizza.name}</h2>
         <p>{pizza.description}</p>
@@ -34,8 +34,8 @@ const PizzaItem: React.FC<PizzaProps> = ({pizza}) => {
         Add to Cart
       </button>
       </div>
-    </li>
+    </div>
   )
 }
 
-export default PizzaItem;
+export default SpecialOffer;

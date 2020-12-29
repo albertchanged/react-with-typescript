@@ -20,3 +20,11 @@
   margin: 0 0 20px;
   padding: 0;
 }
+
+.pizza-list-item button {
+  margin-top: 5px;
+  width: 100px;
+  height: 30px;
+  background-color: forestgreen;
+  color: white;
+}
